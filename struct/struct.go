@@ -52,4 +52,6 @@ func main() {
 	// 만약에 필드명이 중복된다면 nested struct와 같은 방법으로 참조하면 된다
 	fmt.Printf("student.name: %s student.age: %d, classNum: %d, name: %s\n", school.student.name, school.student.age, school.classNum, school.name)
 
+	// 추가적으로 Go는 계산을 빠르게 하기 위해 구조체를 8의 배수로 정렬하여 저장함
+	// 따라서 메모리를 효율적으로 사용하기 위해서는 작은 메모리 공간을 차지하는 필드들을 먼저 선언하여 메모리를 절약할 수 있다
 }
