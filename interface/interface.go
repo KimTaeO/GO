@@ -31,6 +31,19 @@ func (u *User) updateName(name string) {
 func updateName(a Abstract, name string) {
 	if a != nil {
 		a.updateName(name)
+
+		fmt.Println(a)
+	}
+}
+
+func toTeacher(a Abstract) {
+	if a != nil {
+		a.updateName("it is abstract")
+
+		var t *Teacher
+		t = a.(*Teacher)
+
+		t.updateName("now it is teacher")
 	}
 }
 
@@ -39,14 +52,21 @@ func updateName(a Abstract, name string) {
 // 3. 인터페이스에서는 메스드 구현을 포함하지 않는다.
 func main() {
 
-	u := User{
+	u := &User{
 		name: "gopher",
 		age:  12,
 	}
 
 	fmt.Println(u)
 
-	updateName(&u, "golang")
+	updateName(u, "golang")
 
-	fmt.Println(u)
+	t := &Teacher{
+		name: "teacher",
+		age:  27,
+	}
+
+	fmt.Println(t)
+
+	toTeacher(t)
 }
