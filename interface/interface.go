@@ -40,10 +40,25 @@ func toTeacher(a Abstract) {
 	if a != nil {
 		a.updateName("it is abstract")
 
-		var t *Teacher
-		t = a.(*Teacher)
+		// 타입 변환이 되었는지 체크하는 방법
+		// 타입을 변환할 때 두번째 인자는 타입을 변환했을때 성공 여부를
+		if t, ok := a.(*Teacher); ok {
+			t.updateName("now it is teacher")
+		}
+	}
+}
 
-		t.updateName("now it is teacher")
+// 빈 인터페이스는 모든 타입을 가질 수 있다
+func Print(v interface{}) {
+	switch v := v.(type) {
+	case int:
+		fmt.Println(v, " is int")
+	case float64:
+		fmt.Println(v, " is float64")
+	case string:
+		fmt.Println(v, " is string")
+	default:
+		fmt.Printf("Not supported %T:%v\n", v, v)
 	}
 }
 
@@ -69,4 +84,9 @@ func main() {
 	fmt.Println(t)
 
 	toTeacher(t)
+
+	Print(10)
+	Print(3.14)
+	Print("Hello, world!")
+	Print(t)
 }
